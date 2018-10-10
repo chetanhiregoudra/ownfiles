@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Outputs the time
+Resources:
+  TimeFunctionGR:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies: AmazonDynamoDBFullAccess
+      Events:
+        MyTimeApiGR:
+          Type: Api
+          Properties:
+            Path: /TimeResourceGR
+            Method: GET
+  HelloFunctionGR:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: hello.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies: AmazonDynamoDBFullAccess
+      Events:
+        HelloTimeApiGR:
+          Type: Api
+          Properties:
+            Path: /HelloResourceGR
+            Method: GET
+  GetMoviesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: getMovies.handler
+      Runtime: nodejs8.10
+      CodeUri: ./src/movies
+      Policies: AmazonDynamoDBFullAccess
+      Events:
+        GetMoviesApi:
+          Type: Api
+          Properties:
+            Path: /movies
+            Method: GET
+
+  GetMovieFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: getMovie.handler
+      Runtime: nodejs8.10
+      CodeUri: ./src/movies
+      Policies: AmazonDynamoDBFullAccess
+      Events:
+        GetMovieApi:
+          Type: Api
+          Properties:
+            Path: /movies/{id}
+            Method: GET

@@ -1,0 +1,12 @@
+Note
+
+why we need workflow?
+    optimize code
+    use next-gen javascript features(es6 vs es5)
+    be more productive
+
+how we build workflow?
+    use dependancy management too(npm or yarn)
+    use bundler(recommended:webpack)
+    use compiler(next-gen javascript, babel+presets)
+    use a development server

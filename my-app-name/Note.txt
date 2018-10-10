@@ -1,0 +1,4 @@
+react js
+
+* Every thing in react is component.
+Handling data => props and state

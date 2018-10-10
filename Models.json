@@ -1,0 +1,153 @@
+{
+    "users" : {
+        //"oauthProvider": "facebook/twitter",
+        // *oauth details
+
+        "name" : { "type": "string" , 
+                    "required": true},
+
+        "referralCode": "string",
+
+        "email": {"type": "string"},
+
+        "mobile": {string},
+
+        "address": { "street", 
+                        "city", 
+                        "state", 
+                        country: "",
+                        pincode: "",
+                        etc},
+
+        "createdAt": "timestamp"
+        "updatedAt": "timestamp"
+    }
+}
+
+-----
+table : GiftCard
+{
+    id: uuid,
+    title: string,
+    retailerId: uuid (refer to retailers table),
+    points: number,
+    description: string, 
+    categoryId: uuid, refer to category id,
+    comments: [list of comments id, refers to comments table],
+    ratings: [ list of rating ids, refers to rating table],
+    avgRating: number, 
+    thumbnail: string/url,
+    image: string/url,
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+---
+table : Product
+{
+    id: uuid,
+    title: string,
+    retailerId: uuid (refer to retailers table),
+    points: number,
+    description: string, 
+    categoryId: uuid, refer to category id,
+    comments: [list of comments id, refers to comments table],
+    ratings: [ list of rating ids, refers to rating table],
+    avgRating: number, 
+    thumbnail: string/url,
+    image: string/url,
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+---
+
+Category 
+
+{
+    id: uuid,
+    name: title,
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+
+---
+Table: Wallet
+
+{
+    id: uuid,
+    userId: refers to user id
+    points: number; 
+
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+
+---
+Table: Retailers
+
+{
+    id: uuid,
+    name: string,
+    logo: string/url,
+    image: string/url,
+    description: string,
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+---
+Table: Comments
+{
+    id: uuid,
+    type: Card | Product,
+    card/product id: UUID,
+    description: string;
+    userId: uuid refers to users table
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+
+
+Table: Rating
+{
+    id: uuid,
+    type: Card | Product,
+    card/product id: UUID,
+    rating: number; (0-5)
+    userId: uuid refers to users table
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+--
+
+
+
+
+table: transactionCards
+
+sender is always buyers
+
+{
+    id: uuid
+    senderId: uuid refers to user table
+    receiverId: uuid refers to user table
+    giftId: uuid refers to giftcard table,
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+
+--
+
+
+table: transactionProducts
+
+{
+    id: uuid
+    senderId: uuid refers to user table
+    receiverId: uuid refers to user table
+    productId: uuid refers to product table
+    shippingAddress: {}, (1)
+    maintain a code in the portal for lateral claim (2)
+    "createdAt": "timestamp"
+    "updatedAt": "timestamp"
+}
+
+--
